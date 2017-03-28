@@ -1,0 +1,106 @@
+﻿<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <!--<nav>
+                <a routerLink="/home" routerLinkActive="active">Home</a>
+                <a routerLink="/users" routerLinkActive="active">Users</a>
+            </nav>-->
+            <ul class="nav navbar-nav">
+                <li [class.active]="isActive([''])">
+                    <a routerLink="/home" routerLinkActive="active">Home</a>
+                </li>
+                <li *ngIf="authService.isLoggedIn()" [class.active]="isActive(['users'])">
+                    <a routerLink="/users" routerLinkActive="active">Пользователи</a>
+                </li>
+                <li *ngIf="authService.isLoggedIn()" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action1</a></li>
+                        <li><a href="#">Action2</a></li>
+                        <li><a href="#">Action3</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Action4</a></li>
+                        <li><a href="#">Action5</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li *ngIf="!authService.isLoggedIn()" [class.active]="isActive(['login'])">
+                    <a routerLink="/login" routerLinkActive="active" href="#contact">Вход</a>
+                </li>
+                <li *ngIf="authService.isLoggedIn()">
+                    <a href="javascript:void(0)" (click)="logout()">Выход</a>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<!-- Begin page content -->
+<div class="container">
+    <router-outlet></router-outlet>
+    <!--<div class="page-header">
+        <h1></h1>
+    </div>
+    <p class="lead"></p>
+    <p></p>-->
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Footer</p>
+    </div>
+</footer>
+
+<!--<div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">&nbsp;&nbsp; Angular 2 Template in VS</h4>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label></label>
+                                    <input type="text" class="form-control border-input" name="txtTest" id="txtTest" value=""
+                                           placeholder="Two-way data binding - Type here" [(ngModel)]="temp">
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label>Value in Textbox</label>
+                                    {{temp}}
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <button class="btn btn-info btn-fill btn-wd" name="btnClick" id="btnClick" (click)="btnClickedEvent()">
+                                Click This Button !!!
+                            </button>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->

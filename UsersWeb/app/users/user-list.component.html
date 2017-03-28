@@ -1,0 +1,49 @@
+﻿<h2>Пользователи</h2>
+
+<ng-table [config]="config"
+          [columns]="columns"
+          [rows]="rows"
+          (tableChanged)="onChangeTable(config)"
+          (cellClicked)="onCellClick($event, detailsModal)">
+</ng-table>
+
+<pagination *ngIf="config.paging"
+            class="pagination-sm"
+            [(ngModel)]="page"
+            [totalItems]="length"
+            [itemsPerPage]="itemsPerPage"
+            [maxSize]="maxSize"
+            [boundaryLinks]="true"
+            [rotate]="false"
+            previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+            (pageChanged)="onChangeTable(config, $event)"
+            (numPages)="numPages = $event">
+</pagination>
+
+<div class="btn-block">
+    <button type="button" class="btn btn-primary" title="Добавить нового пользователя" (click)="onCellClick(null, detailsModal)">Добавить</button>
+</div>
+
+
+<div class="modal fade" bsModal #detailsModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Редактирование пользователя</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="detailsModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <user-details #userDetails [selectedUser]="selectedUser" (userChanged)="userChanged($event)"></user-details>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-block">
+                    <button type="button" class="btn btn-primary" (click)="userDetails.Save();detailsModal.hide()">OK</button>
+                    <button type="button" class="btn btn-default" (click)="detailsModal.hide()">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--<base href="/">-->
+
+    <title></title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--<link rel="stylesheet" href="content/bootstrap.css"/>-->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="content/bootstrap-theme.css"/>-->
+    <link rel="stylesheet" href="content/styles.css">
+
+    <!--@Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")-->
+
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+
+    <script>
+        System.import('app').catch(function(err) {
+            console.error(err);
+        });
+    </script>
+
+
+</head>
+<body>
+    <my-app>Loading...</my-app>
+    
+    <script src="scripts/jquery-1.9.0.js"></script>
+    <script src="scripts/bootstrap.js"></script>
+</body>
+</html>
