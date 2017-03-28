@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable";
 
 import { AuthHttp } from "../auth.http";
-import { Config } from "../app.config";
+import { ConfigService } from "../config.service";
 
 
 export class User {
@@ -34,7 +34,7 @@ export class ListResult<T> {
 
 @Injectable()
 export class UserService {
-    constructor(private authHttp: AuthHttp, private config: Config) { }
+    constructor(private authHttp: AuthHttp, private config: ConfigService) { }
 
     //private baseUrl = "http://epuakyiw2509/RainbowAPI/api/Users"; 
 

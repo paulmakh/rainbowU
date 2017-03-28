@@ -1,8 +1,8 @@
 ﻿import { ErrorHandler } from '@angular/core';
-import { Router } from "@angular/router";
+//import { Router } from "@angular/router";
 
 export class MyErrorHandler extends ErrorHandler {
-    constructor(private router: Router) {
+    constructor(/*private router: Router*/) {
         super(true);
     }
 

@@ -1,4 +1,4 @@
-﻿import { NgModule } from "@angular/core";
+﻿import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
@@ -13,6 +13,7 @@ import { AuthModule } from "./auth.module";
 
 import { HomeComponent } from "./app.home.component";
 import { LoginComponent } from "./login.component";
+import { ConfigService } from "./config.service";
 
 @NgModule({
     imports: [
@@ -30,6 +31,13 @@ import { LoginComponent } from "./login.component";
         LoginComponent
     ],
     providers: [
+        ConfigService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: (config: ConfigService) => () => config.load(),
+            deps: [ConfigService],
+            multi: true
+        },
         { provide: APP_BASE_HREF, useValue: "/" },
         AuthService
     ],

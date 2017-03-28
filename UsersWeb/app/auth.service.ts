@@ -3,13 +3,13 @@ import { Http, Headers, Response, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 //import { AuthHttp, AuthConfig, AUTH_PROVIDERS } from "angular2-jwt";
 import 'rxjs/add/operator/map';
-import { Config } from "./app.config";
+import { ConfigService } from "./config.service";
 
 @Injectable()
 export class AuthService {
     authKey = "id_token";
 
-    constructor(private http: Http, private config: Config) {
+    constructor(private http: Http, private config: ConfigService) {
     }
 
     login(username: string, password: string): any {

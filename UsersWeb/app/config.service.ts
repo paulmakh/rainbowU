@@ -3,21 +3,21 @@ import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class Config {
+export class ConfigService {
     private _settings: Object;
     public usersApiUrl: string; 
 
     constructor(private http: Http) {
     }
 
-    private load() {
-        return new Promise((resolve, reject) => {
+    public load() {
+        return new Promise((resolve) => {
             this.http.get("app/settings.json")
                 .map(res => res.json())
-                .subscribe((settings_data) => {
+                .subscribe(settings_data => {
                     this._settings = settings_data;
-
                     this.usersApiUrl = this.getSetting("usersApiUrl");
+                    resolve();
                 });
         });
     }
