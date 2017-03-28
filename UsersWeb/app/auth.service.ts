@@ -3,16 +3,17 @@ import { Http, Headers, Response, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 //import { AuthHttp, AuthConfig, AUTH_PROVIDERS } from "angular2-jwt";
 import 'rxjs/add/operator/map';
+import { Config } from "./app.config";
 
 @Injectable()
 export class AuthService {
     authKey = "id_token";
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private config: Config) {
     }
 
     login(username: string, password: string): any {
-        var url = "http://epuakyiw2509/RainbowAPI/Token";  // JwtProvider's LoginPath
+        //var url = "http://epuakyiw2509/RainbowAPI/Token";  // JwtProvider's LoginPath
 
         var data = {
             username: username,
@@ -25,7 +26,7 @@ export class AuthService {
         };
 
         return this.http.post(
-            url,
+            this.config.usersApiUrl + "Token",
             this.toUrlEncodedString(data),
             new RequestOptions({
                 headers: new Headers({

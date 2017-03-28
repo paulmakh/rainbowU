@@ -1,9 +1,12 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from "@angular/http";
 //import { AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
-import { AuthHttp } from "../auth.http";
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable";
+
+import { AuthHttp } from "../auth.http";
+import { Config } from "../app.config";
+
 
 export class User {
     constructor(
@@ -31,9 +34,9 @@ export class ListResult<T> {
 
 @Injectable()
 export class UserService {
-    constructor(private authHttp: AuthHttp) { }
+    constructor(private authHttp: AuthHttp, private config: Config) { }
 
-    private baseUrl = "http://epuakyiw2509/RainbowAPI/api/Users"; 
+    //private baseUrl = "http://epuakyiw2509/RainbowAPI/api/Users"; 
 
     getUsers(skip: number, take: number, sortColumn: string, sortDirection: string, filterColumns: string, filterValues: string): Observable<ListResult<User>> {
         let params = new URLSearchParams();
@@ -44,19 +47,19 @@ export class UserService {
         params.set("filterColumns", filterColumns);
         params.set("filterValues", filterValues);
 
-        return this.authHttp.get(this.baseUrl, { search: params })
+        return this.authHttp.get(this.config.usersApiUrl + "Users", { search: params })
             .map(response => response.json());
             //.catch(this.handleError);
     }
 
     getUser(id: number | string): Observable<User> {
-        return this.authHttp.get(this.baseUrl + "/" + id)
+        return this.authHttp.get(this.config.usersApiUrl + "Users/" + id)
             .map(response => response.json());
         //.catch(this.handleError);
     }
 
     createUser(user: User): Observable<User> {
-        return this.authHttp.post(this.baseUrl, user)
+        return this.authHttp.post(this.config.usersApiUrl + "Users", user)
             .map(response => response.json());
     }
 
@@ -64,12 +67,12 @@ export class UserService {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        return this.authHttp.put(this.baseUrl + "/" + user.UserId, JSON.stringify(user), { headers: headers })
+        return this.authHttp.put(this.config.usersApiUrl + "Users/" + user.UserId, JSON.stringify(user), { headers: headers })
             .map(response => response.json());
     }
 
     deleteUser(id: number) {
-        this.authHttp.delete(this.baseUrl + "/" + id);
+        this.authHttp.delete(this.config.usersApiUrl + "Users/" + id);
     }
 
     private handleError(error: Response) {
