@@ -2,7 +2,7 @@
 
 ## Installation
 
-###UserService
+### UserService
 
 Add new application in IIS and confugure on folder UserService
 
@@ -15,7 +15,7 @@ Define connection string in web.config:
 
 Service will create or update defined database on first run.
 
-###UsersWeb
+### UsersWeb
 
 Add new application in IIS and confugure on folder UsersWeb
 
